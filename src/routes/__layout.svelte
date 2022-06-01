@@ -46,6 +46,11 @@
 		scrollbar-width: thin;
 		scrollbar-color: var(--accent-color) var(--bg-color-body);
 	}
+	@media (max-width: 800px) {
+		.global {
+			overflow-y: auto;
+		}
+	}
 	.global::-webkit-scrollbar-track {
 		background: var(--bg-color-body);
 	}
