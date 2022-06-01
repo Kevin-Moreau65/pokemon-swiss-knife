@@ -4,7 +4,7 @@ import * as PKMNTypeO from './types';
 
 export const defaultType: DefaultPKMNType = {
 	fire: 1,
-	electrik: 1,
+	electric: 1,
 	normal: 1,
 	water: 1,
 	grass: 1,
@@ -12,8 +12,8 @@ export const defaultType: DefaultPKMNType = {
 	fight: 1,
 	poison: 1,
 	ground: 1,
-	fly: 1,
-	psy: 1,
+	flying: 1,
+	psychic: 1,
 	bug: 1,
 	rock: 1,
 	ghost: 1,
@@ -23,49 +23,40 @@ export const defaultType: DefaultPKMNType = {
 	fairy: 1
 };
 
-type defaultPKMN = {
-	offensive: {
-		[x in PKMNTypeString]: 1;
-	};
-	defensive: {
-		[x in PKMNTypeString]: 1;
-	};
-};
-
-export const combine = (Stype1: PKMNTypeString, Stype2?: PKMNTypeString): PKMNType => {
+export const combineDefense = (
+	Stype1: PKMNTypeString,
+	Stype2?: PKMNTypeString
+): { [x in PKMNTypeString]: number } => {
 	const type1 = PKMNTypeO[Stype1];
-	const result: defaultPKMN = { defensive: { ...defaultType }, offensive: { ...defaultType } };
+	const result = { ...defaultType };
 	const arrDefType1: [PKMNTypeString, number][] = Object.entries(type1.defensive) as [
 		PKMNTypeString,
 		number
 	][];
-	const arrOffType1: [PKMNTypeString, number][] = Object.entries(type1.offensive) as [
-		PKMNTypeString,
-		number
-	][];
+	for (const [key, value] of arrDefType1) {
+		result[key] *= value;
+	}
 	if (Stype2) {
 		const type2 = PKMNTypeO[Stype2];
 		const arrDefType2: [PKMNTypeString, number][] = Object.entries(type2.defensive) as [
 			PKMNTypeString,
 			number
 		][];
-		const arrOffType2: [PKMNTypeString, number][] = Object.entries(type2.offensive) as [
-			PKMNTypeString,
-			number
-		][];
 		for (const [key, value] of arrDefType2) {
-			result.defensive[key] *= value;
-		}
-		for (const [key, value] of arrOffType2) {
-			result.offensive[key] *= value;
+			result[key] *= value;
 		}
 	}
+	return result;
+};
+export const combineOffense = (Stype: PKMNTypeString): { [x in PKMNTypeString]: number } => {
+	const type = PKMNTypeO[Stype];
+	const result = { ...defaultType };
+	const arrDefType1: [PKMNTypeString, number][] = Object.entries(type.offensive) as [
+		PKMNTypeString,
+		number
+	][];
 	for (const [key, value] of arrDefType1) {
-		result.defensive[key] *= value;
+		result[key] *= value;
 	}
-	for (const [key, value] of arrOffType1) {
-		result.offensive[key] *= value;
-	}
-	console.log(result);
 	return result;
 };

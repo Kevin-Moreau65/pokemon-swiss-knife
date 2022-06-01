@@ -1,8 +1,8 @@
 <script lang="ts">
-	export let theme = 'light';
+	export let theme: string;
 	const switchTheme = () => {
 		theme = theme === 'light' ? 'dark' : 'light';
-		console.log(theme);
+		localStorage.setItem('theme', theme);
 	};
 </script>
 
@@ -14,7 +14,7 @@
 	<ul>
 		<li><a href="/">Home</a></li>
 		<li style="float:right" class="active" on:click={switchTheme}>
-			<p>Dark Theme</p>
+			<p>{theme === 'light' ? 'Dark' : 'Light'} Theme</p>
 		</li>
 	</ul>
 </nav>
