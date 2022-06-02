@@ -1,27 +1,16 @@
 import type PKMNType from './interface';
-
+import { defaultType } from './interface';
 export const fire: PKMNType = {
-	defensive: {
-		fire: 0.5,
-		grass: 0.5,
-		ice: 0.5,
-		bug: 0.5,
-		steel: 0.5,
-		fairy: 0.5,
-		water: 2,
-		ground: 2,
-		rock: 2
-	},
-	offensive: {
-		fire: 0.5,
-		water: 0.5,
-		rock: 0.5,
-		dragon: 0.5,
-		grass: 2,
-		ice: 2,
-		bug: 2,
-		steel: 2
-	}
+	...defaultType,
+	fire: 0.5,
+	grass: 0.5,
+	ice: 0.5,
+	bug: 0.5,
+	steel: 0.5,
+	fairy: 0.5,
+	water: 2,
+	ground: 2,
+	rock: 2
 };
 export const normal: PKMNType = {
 	defensive: {

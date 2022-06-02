@@ -1,62 +1,23 @@
 import type PKMNType from './interface';
-import type { DefaultPKMNType, PKMNTypeString } from './interface';
+import { defaultType, type PKMNTypeString } from './interface';
 import * as PKMNTypeO from './types';
-
-export const defaultType: DefaultPKMNType = {
-	fire: 1,
-	electric: 1,
-	normal: 1,
-	water: 1,
-	grass: 1,
-	ice: 1,
-	fight: 1,
-	poison: 1,
-	ground: 1,
-	flying: 1,
-	psychic: 1,
-	bug: 1,
-	rock: 1,
-	ghost: 1,
-	dragon: 1,
-	dark: 1,
-	steel: 1,
-	fairy: 1
-};
-
-export const combineDefense = (
-	Stype1: PKMNTypeString,
-	Stype2?: PKMNTypeString
-): { [x in PKMNTypeString]: number } => {
+export const combineDefense = (Stype1: PKMNTypeString, Stype2?: PKMNTypeString): PKMNType => {
 	const type1 = PKMNTypeO[Stype1];
-	const result = { ...defaultType };
-	const arrDefType1: [PKMNTypeString, number][] = Object.entries(type1.defensive) as [
-		PKMNTypeString,
-		number
-	][];
-	for (const [key, value] of arrDefType1) {
-		result[key] *= value;
-	}
+	const result = { ...type1 };
 	if (Stype2) {
 		const type2 = PKMNTypeO[Stype2];
-		const arrDefType2: [PKMNTypeString, number][] = Object.entries(type2.defensive) as [
-			PKMNTypeString,
-			number
-		][];
-		for (const [key, value] of arrDefType2) {
+		const arrType2 = Object.entries(type2) as [PKMNTypeString, number][];
+		for (const [key, value] of arrType2) {
 			result[key] *= value;
 		}
 	}
 	return result;
 };
-export const combineOffense = (Stype: PKMNTypeString): { [x in PKMNTypeString]: number } => {
-	const type = PKMNTypeO[Stype];
+export const combineOffense = (Stype: PKMNTypeString): PKMNType => {
 	const result = { ...defaultType };
-	const arrDefType1: [PKMNTypeString, number][] = Object.entries(type.offensive) as [
-		PKMNTypeString,
-		number
-	][];
-	for (const [key, value] of arrDefType1) {
-		result[key] *= value;
+	const arrDefTypes = Object.entries(PKMNTypeO) as [PKMNTypeString, PKMNType][];
+	for (const [key] of arrDefTypes) {
+		result[key] = PKMNTypeO[key][Stype];
 	}
 	return result;
 };
