@@ -141,11 +141,12 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		margin: 0 20px;
+		margin: 0 20px 10px 20px;
 		height: 100%;
 	}
 	.offenseWrapper {
 		display: flex;
 		width: 100%;
+		align-items: center;
 	}
 </style>

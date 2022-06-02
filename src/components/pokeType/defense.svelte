@@ -80,10 +80,7 @@
 		</div>
 	{/if}
 	{#if specials.immun[0]}
-		<div
-			class="categorie"
-			style="background-color: rgba(158, 158, 158, 0.504); border-radius: 12px;"
-		>
+		<div class="categorie immun">
 			<h4>
 				No effect against (x0), {specials.immun.length} type{specials.immun.length > 1 ? 's' : ''}
 			</h4>
@@ -102,7 +99,7 @@
 		flex-direction: column;
 		align-items: center;
 		align-content: center;
-		height: 100%;
+		height: 110%;
 		margin: 10px;
 		width: 100%;
 	}
@@ -113,6 +110,7 @@
 		column-gap: 10px;
 		padding-bottom: 10px;
 		grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+		overflow: hidden;
 	}
 	.iconsGrid img {
 		width: 100%;
@@ -139,5 +137,8 @@
 	}
 	.veryWeak {
 		background-color: rgba(255, 42, 42, 0.503);
+	}
+	.immun {
+		background-color: rgba(158, 158, 158, 0.504);
 	}
 </style>

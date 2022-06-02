@@ -32,23 +32,31 @@
 		padding: 0;
 		background-color: var(--bg-color-body);
 		transition: all 0.2s;
-		min-height: 100vh;
+		height: 100%;
 		--accent-color: rgb(53, 122, 233);
 		overflow: hidden;
+	}
+	:global(body > div) {
+		height: 100%;
 	}
 	/* Chrome, Edge, and Safari */
 	.global::-webkit-scrollbar {
 		width: 10px;
 	}
 	.global {
-		height: 100vh;
+		height: 100%;
+		margin-bottom: 10px;
 		overflow-y: scroll;
 		scrollbar-width: thin;
 		scrollbar-color: var(--accent-color) var(--bg-color-body);
+		scroll-behavior: smooth;
 	}
 	@media (max-width: 800px) {
 		.global {
 			overflow-y: auto;
+		}
+		.global::-webkit-scrollbar {
+			width: 0px;
 		}
 	}
 	.global::-webkit-scrollbar-track {
