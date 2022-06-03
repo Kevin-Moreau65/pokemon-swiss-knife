@@ -12,7 +12,7 @@
 		: 'rgb(47, 47, 47)'};--font-color: {theme === 'light' ? 'black' : 'white'}"
 >
 	<ul>
-		<li><a href="/">Home</a></li>
+		<li><a href="/" class="iconHolder"><img src="/favicon.png" alt="" /></a></li>
 		<li style="float:right" class="active" on:click={switchTheme}>
 			<p>{theme === 'light' ? 'Dark' : 'Light'} Theme</p>
 		</li>
@@ -33,6 +33,18 @@
 		position: sticky;
 		top: 0;
 		z-index: 1;
+		height: 50px;
+	}
+	.iconHolder {
+		height: 50px;
+		display: flex;
+		padding: 0 7px;
+		align-items: center;
+		justify-content: center;
+		align-content: center;
+	}
+	.iconHolder > img {
+		height: 42px;
 	}
 	ul {
 		list-style-type: none;
@@ -41,11 +53,13 @@
 		overflow: hidden;
 		background-color: rgb(33, 33, 33);
 		transition: all 0.2s;
+		height: 100%;
 	}
 
 	li {
 		float: left;
 		cursor: pointer;
+		height: 100%;
 	}
 
 	li a,
