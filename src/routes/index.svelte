@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { iconState, type PKMNTypeString } from '../utils/interface';
+	import { defaultType, iconState, type PKMNTypeString } from '../utils/interface';
 	import Icon from '../components/icon.svelte';
 	import { fade } from 'svelte/transition';
-	import { combineDefense, combineOffense, defaultType } from '../utils/function';
+	import { combineDefense, combineOffense } from '../utils/function';
 	import Offense from '../components/pokeType/offense.svelte';
 	import Defense from '../components/pokeType/defense.svelte';
 	const arrDefaultType = Object.entries(defaultType);
@@ -120,6 +120,10 @@
 		</div>
 		<Defense type={activeType} bind:specials={combination.defensive} />
 	</div>
+{:else}
+	<div class="presentation">
+		<p>Click on a type to see its weaknesses and resistances !</p>
+	</div>
 {/if}
 
 <style>
@@ -127,6 +131,10 @@
 		.offenseWrapper {
 			flex-direction: column;
 		}
+	}
+	.presentation {
+		width: 100%;
+		text-align: center;
 	}
 	.icons {
 		display: grid;

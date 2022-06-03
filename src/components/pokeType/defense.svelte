@@ -99,7 +99,7 @@
 		flex-direction: column;
 		align-items: center;
 		align-content: center;
-		height: 110%;
+		height: 150%;
 		margin: 10px;
 		width: 100%;
 	}
