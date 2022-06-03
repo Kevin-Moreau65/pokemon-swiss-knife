@@ -1,9 +1,16 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	export let theme: string;
+	let urlPath: string | null;
 	const switchTheme = () => {
 		theme = theme === 'light' ? 'dark' : 'light';
 		localStorage.setItem('theme', theme);
 	};
+	$: {
+		console.log($page.routeId);
+		urlPath = $page.routeId;
+		console.log(urlPath);
+	}
 </script>
 
 <nav
@@ -13,7 +20,10 @@
 >
 	<ul>
 		<li><a href="/" class="iconHolder"><img src="/favicon.png" alt="" /></a></li>
-		<li style="float:right" class="active" on:click={switchTheme}>
+		<li class={urlPath === 'pokeType' ? 'active' : ''}>
+			<a href="/pokeType"><p>PokeType</p></a>
+		</li>
+		<li style="float:right" on:click={switchTheme}>
 			<p>{theme === 'light' ? 'Dark' : 'Light'} Theme</p>
 		</li>
 	</ul>
@@ -62,15 +72,14 @@
 		height: 100%;
 	}
 
-	li a,
 	li p {
 		display: block;
 		text-align: center;
 		padding: 14px 16px;
-		text-decoration: none;
 	}
 	/* Change the link color to #111 (black) on hover */
-	li a:hover {
+	li a:hover,
+	li p:hover {
 		background-color: #111;
 	}
 	p {

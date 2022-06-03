@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { iconState } from '../utils/interface';
+	import { iconState } from '$utils/pokeTypes/interface';
 	//icon
 	export let name: string;
 	export let handleClick: (type: string) => any;
